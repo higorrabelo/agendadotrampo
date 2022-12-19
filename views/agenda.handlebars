@@ -3,34 +3,15 @@
     <h1>Lista de Tarefas</h1>
     
     <div class="row">
-        <div class="mybox">
-        <h3>Tarefa</h3><hr>
-        <p>Descrição da Tarefa</p>
-    </div>
-    <div class="mybox">
-        <h3>Tarefa</h3><hr>
-        <p>Descrição da Tarefa</p>
-    </div>
-    <div class="mybox">
-        <h3>Tarefa</h3><hr>
-        <p>Descrição da Tarefa</p>
-    </div>
-    <div class="mybox">
-        <h3>Tarefa</h3><hr>
-        <p>Descrição da Tarefa</p>
-    </div>
-    <div class="mybox">
-        <h3>Tarefa</h3><hr>
-        <p>Descrição da Tarefa</p>
-    </div>
-    <div class="mybox">
-        <h3>Tarefa</h3><hr>
-        <p>Descrição da Tarefa</p>
-    </div>
-    <div class="mybox">
-        <h3>Tarefa</h3><hr>
-        <p>Descrição da Tarefa</p>
-    </div>
+        {{#each tarefas}}
+            <div class="mybox">
+            <h3>{{ this.titulo }}</h3><hr>
+            <p>{{ this.descricao }}</p>
+            <div class="d-flex justify-content-end">
+                <input type="button" class="btn btn-primary" value="Atualizar">
+            </div>
+            </div>
+        {{/each}}       
     </div>
 
 </div>

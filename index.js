@@ -17,10 +17,13 @@ app.use(bodyParser.urlencoded({extended:false}))
 app.use(bodyParser.json());
 //findOneAndRmove
 app.get("/",function(req,resp){
-    resp.render("index");
+    resp.render("index",{layouts:"Home"});
 })
 app.get("/agenda",function(req,resp){
-    resp.render("agenda");
+    var Tarefas = mongoose.model("Tarefas",tarefasModel);
+    Tarefas.find({},function(err,tarefa){
+        resp.render("agenda",{title:"Agenda",tarefas:tarefa});
+    })
 })
 app.get("/cadastro_usuario",function(req,resp){
     resp.render("cadastro_usuario");
@@ -46,13 +49,13 @@ app.post("/cadastro_user",function(req,resp){
 app.post("/cad_tarefa",function(req,resp){
     var titulo = req.body.titulo;
     var descricao = req.body.descricao;
-    var usuario = req.body.usuario
+    var usuario = req.body.usuario;
     const Tarefas = mongoose.model("Tarefas",tarefasModel);
 
     const tarefa = new Tarefas({
             titulo:titulo,
             descricao:descricao,
-            usuario:autor
+            usuario:usuario
     });
 
     tarefa.save()
@@ -61,8 +64,10 @@ app.post("/cad_tarefa",function(req,resp){
 })
 
 app.get("/cadastro_tarefa",function(req,resp){
-
-    resp.render("cadastro_tarefa");
+    var Usuarios = mongoose.model("Usuarios",usuariosModel);
+    Usuarios.find({},function(err,usuario){
+        resp.render("cadastro_tarefa",{title:"Tarefas",usuarios:usuario});
+    })
 })
 app.get("/contato",function(req,resp){
     resp.render("contato");

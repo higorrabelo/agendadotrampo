@@ -12,11 +12,10 @@
                     <label for="">Título da Tarefa</label>
                     <input type="text" class="form-control" name="titulo" placeholder="Digite o Login">
                     <label for="">Selecione o Autor</label>
-                    <select class="form-control" name="lista" id="lista">
-                        <option value="Higor">Higor</option>
-                        <option value="Rafael">Rafael</option>
-                        <option value="Moura">Moura</option>
-                        <option value="Rabelo">Rabêlo</option>
+                    <select class="form-control" name="usuario" id="usuario">               
+                        {{#each usuarios}}
+                            <option value={{ this.nome }}>{{ this.nome }}</option>
+                        {{/each}} 
                     </select>
                     <textarea name="descricao" class="form-control mt-3" id="" cols="30" rows="5" placeholder="descrição da tarefa"></textarea>
                     <div class="d-flex justify-content-end mt-4">
