@@ -5,7 +5,7 @@ const tarefasModel = mongoose.Schema({
     descricao:String,
     status:String,
     usuario:String,
-    inscricao:{type:Date, default: new Date},
+    inscricao:{type:Date, default: new Date()},
     edicao: Date
 });
 

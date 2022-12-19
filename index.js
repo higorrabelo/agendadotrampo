@@ -42,9 +42,8 @@ app.post("/cadastro_user",function(req,resp){
             senha:crypto.MD5(senha).toString(),
             email:email
     });
-
     usuario.save()
-    resp.render("agenda");  
+    resp.redirect("/agenda");  
 })
 app.post("/cad_tarefa",function(req,resp){
     var titulo = req.body.titulo;
@@ -59,8 +58,7 @@ app.post("/cad_tarefa",function(req,resp){
     });
 
     tarefa.save()
-    resp.render("agenda");
-    
+    resp.redirect("/agenda");  ;
 })
 
 app.get("/cadastro_tarefa",function(req,resp){

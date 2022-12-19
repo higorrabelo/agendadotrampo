@@ -6,9 +6,14 @@
         {{#each tarefas}}
             <div class="mybox">
             <h3>{{ this.titulo }}</h3><hr>
+            <input type="hidden" value={{this._id}}>
             <p>{{ this.descricao }}</p>
+            <p><h6 class="text-danger">Criado por: {{ this.usuario }}</h6></p>
+            <h6>{{ this.inscricao }}</h6>
             <div class="d-flex justify-content-end">
-                <input type="button" class="btn btn-primary" value="Atualizar">
+                <input type="submit" class="btn btn-success" value="Concluir">
+                <input type="submit" class="btn btn-warning" value="Editar">
+                <input type="submit" class="btn btn-danger" value="Remover">
             </div>
             </div>
         {{/each}}       
