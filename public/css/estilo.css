@@ -1,8 +1,9 @@
 .mybox{
-    height: 300px;
+    height: auto;
     width: 500px;
     background-color: aliceblue;
     color: black;
-    box-shadow: 12px;
+    box-shadow: 12px 12px 12px black;
     border-radius: 12px 12px 12px 12px;
+    padding: 20px;
 }
