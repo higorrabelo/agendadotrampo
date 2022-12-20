@@ -3,20 +3,20 @@
     <h1>Lista de Tarefas</h1>
     
     <div class="row">
-        {{#each tarefas}}
-            <div class="mybox">
-            <h3>{{ this.titulo }}</h3><hr>
-            <input type="hidden" value={{this._id}}>
-            <p>{{ this.descricao }}</p>
-            <p><h6 class="text-danger">Criado por: {{ this.usuario }}</h6></p>
-            <h6>{{ this.inscricao }}</h6>
-            <div class="d-flex justify-content-end">
-                <input type="submit" class="btn btn-success" value="Concluir">
-                <input type="submit" class="btn btn-warning" value="Editar">
-                <input type="submit" class="btn btn-danger" value="Remover">
+        {{#tarefas}}
+              <div class="mybox">
+                <h3>{{ titulo }}</h3><hr>
+                <input type="hidden" name="id" id="id" value={{_id}}>
+                <p>{{ descricao }}</p>
+                <p><h6 class="text-danger">Criado por: {{ usuario }}</h6></p>
+                <h6>{{ inscricao }}</h6>
+                <div class="d-flex justify-content-end">
+                    <a type="button" class="btn btn-success"  href="/concluir">Concluir</a>
+                    <a type="button" class="btn btn-warning"  href="/editar">Editar</a>
+                    <a type="button" class="btn btn-danger"  href="/remover/?id={{_id}}">Remover</a>
+                </div>
             </div>
-            </div>
-        {{/each}}       
+        {{/tarefas}}       
     </div>
 
 </div>

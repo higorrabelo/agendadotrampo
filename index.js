@@ -6,6 +6,7 @@ const mongoose = require("mongoose");
 const usuariosModel = require('./models/usuarios');
 const tarefasModel = require('./models/tarefas');
 const crypto = require('crypto-js');//chamando a biblioteca crypto-js para harsh de senhas
+const moment = require('moment');
 
 mongoose.connect("mongodb://localhost:27017/agenda")//conexão com o banco mongodb agenda
 
@@ -28,6 +29,16 @@ app.get("/agenda",function(req,resp){
         resp.render("agenda",{title:"Agenda",tarefas:tarefa});
     })
 })
+
+app.get("/remover/{id}/",function(req,resp){
+    var id = req.params.id;
+    //var Tarefas = mongoose.model("Tarefas",tarefasModel);
+    //Tarefas.deleteOne({_id:id})
+    //resp.redirect("agenda");
+    resp.send("Número de ID"+id);
+});
+
+
 app.get("/cadastro_usuario",function(req,resp){
     resp.render("cadastro_usuario");
 })
@@ -67,6 +78,9 @@ app.post("/cad_tarefa",function(req,resp){
 app.get("/contato",function(req,resp){
     resp.render("contato");
 });
+
+
+
 app.listen(8080,function(){
     console.log("Servidor Ativo")
 });

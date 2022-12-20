@@ -14,7 +14,7 @@
                     <label for="">Selecione o Autor</label>
                     <select class="form-control" name="usuario" id="usuario">               
                         {{#each usuarios}}
-                            <option value={{ this.nome }}>{{ this.nome }}</option>
+                            <option value={{ this._id }}>{{ this.nome }}</option>
                         {{/each}} 
                     </select>
                     <textarea name="descricao" class="form-control mt-3" id="" cols="30" rows="5" placeholder="descrição da tarefa"></textarea>
