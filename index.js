@@ -3,8 +3,8 @@ const app = express();
 const bodyParser = require('body-parser');
 const initTemplate = require('./helpers');
 const mongoose = require("mongoose");
-const usuariosModel = require('./models/usuarios');
-const tarefasModel = require('./models/tarefas');
+const Usuarios = require('./models/usuarios');
+const Tarefas = require('./models/tarefas');
 const crypto = require('crypto-js');//chamando a biblioteca crypto-js para harsh de senhas
 const moment = require('moment');
 
@@ -24,18 +24,16 @@ app.get("/",function(req,resp){
     resp.render("index",{layouts:"Home"});
 })
 app.get("/agenda",function(req,resp){
-    var Tarefas = mongoose.model("Tarefas",tarefasModel);
     Tarefas.find({},function(err,tarefa){
         resp.render("agenda",{title:"Agenda",tarefas:tarefa});
     })
 })
 
-app.get("/remover/{id}/",function(req,resp){
+app.get("/remover/:id",function(req,resp){
     var id = req.params.id;
-    //var Tarefas = mongoose.model("Tarefas",tarefasModel);
-    //Tarefas.deleteOne({_id:id})
-    //resp.redirect("agenda");
-    resp.send("Número de ID"+id);
+    Tarefas.findOneAndRemove({_id:`${id}`},function(data){
+            resp.redirect("/agenda")
+    })
 });
 
 
@@ -46,18 +44,24 @@ app.post("/cadastro_user",function(req,resp){
     var nome = req.body.nome;
     var senha = req.body.senha;
     var email = req.body.email;
-    const Usuarios = mongoose.model("Usuarios",usuariosModel);
 
-    const usuario = new Usuarios({
+    const usuarios = new Usuarios({
             nome:nome,
             senha:crypto.MD5(senha).toString(),
             email:email
     });
-    usuario.save()
+    usuarios.save()
     resp.redirect("/agenda");  
 });
+
+app.get("/editar/:id/:titulo/:descricao",function(req,resp){
+    var id = req.params.id;
+    var titulo = req.params.titulo;
+    var descricao = req.params.descricao;
+    resp.render("cadastro_tarefa",{id,titulo,descricao});
+});
+
 app.get("/cadastro_tarefa",function(req,resp){
-    var Usuarios = mongoose.model("Usuarios",usuariosModel);
     Usuarios.find({},function(err,usuario){
         resp.render("cadastro_tarefa",{title:"Tarefas",usuarios:usuario});
     })
@@ -65,20 +69,19 @@ app.get("/cadastro_tarefa",function(req,resp){
 app.post("/cad_tarefa",function(req,resp){
     var titulo = req.body.titulo;
     var descricao = req.body.descricao;
-    var usuario = req.body.usuario;
-    const Tarefas = mongoose.model("Tarefas",tarefasModel);
+    var id_usuario = req.body.usuario;
     const tarefa = new Tarefas({
             titulo:titulo,
             descricao:descricao,
-            usuario:usuario
+            id_usuario:id_usuario
     });
     tarefa.save()
     resp.redirect("/agenda");  ;
+    //resp.send(`Titulo: ${titulo}  \n Descrição: ${descricao} \n Id_usuario: ${usuario}`)
 });
 app.get("/contato",function(req,resp){
     resp.render("contato");
 });
-
 
 
 app.listen(8080,function(){

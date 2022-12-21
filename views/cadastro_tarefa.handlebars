@@ -9,15 +9,16 @@
 
         <div class="mybox mt-4">
                 <form action="/cad_tarefa" method="post">
+                    <input type="hidden" value="{{id}}">
                     <label for="">Título da Tarefa</label>
-                    <input type="text" class="form-control" name="titulo" placeholder="Nome da Tarefa">
+                    <input type="text" class="form-control" name="titulo" placeholder="Nome da Tarefa" value="{{titulo}}">
                     <label for="">Selecione o Autor</label>
                     <select class="form-control" name="usuario" id="usuario">               
                         {{#each usuarios}}
                             <option value={{ this._id }}>{{ this.nome }}</option>
                         {{/each}} 
                     </select>
-                    <textarea name="descricao" class="form-control mt-3" id="" cols="30" rows="5" placeholder="descrição da tarefa"></textarea>
+                    <textarea name="descricao" class="form-control mt-3" id="" cols="30" rows="5" placeholder="descrição da tarefa">{{descricao}}</textarea>
                     <div class="d-flex justify-content-end mt-4">
                         <input type="submit" class="btn btn-primary" value="Cadastrar Tarefa">
                     </div>
