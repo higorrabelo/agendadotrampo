@@ -1,18 +1,21 @@
 const express = require('Express');
 const app = express();
 const bodyParser = require('body-parser');
-const initTemplate = require('./helpers');
+const initApp = require('./helpers');
 const mongoose = require("mongoose");
 const Usuarios = require('./models/usuarios');
 const Tarefas = require('./models/tarefas');
 const crypto = require('crypto-js');//chamando a biblioteca crypto-js para harsh de senhas
 const moment = require('moment');
 
+
 mongoose.connect("mongodb://localhost:27017/agenda")//conexão com o banco mongodb agenda
 
 app.use(express.static("public"))//Atrelando a pasta public com os arquivos css e js para o frontend
 
-initTemplate(app)//Iniciando Handlebars
+initApp(app)//Iniciando Handlebars
+
+
 
 //chamando a biblioteca body-parser para captura de dados dos formulários
 app.use(bodyParser.urlencoded({extended:false}))
@@ -25,7 +28,10 @@ app.get("/",function(req,resp){
 })
 app.get("/agenda",function(req,resp){
     Tarefas.find({},function(err,tarefa){
-        resp.render("agenda",{title:"Agenda",tarefas:tarefa});
+        req.options = {}
+        req.options.title = "Agenda"
+        req.options.tarefas = tarefa 
+        resp.render("agenda",req.options);
     })
 })
 

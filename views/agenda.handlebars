@@ -9,7 +9,7 @@
                 <input type="hidden" name="id" id="id" value={{_id}}>
                 <p>{{ descricao }}</p>
                 <p><h6 class="text-danger">Criado por: {{ id_usuario }}</h6></p>
-                <h6>{{ inscricao }}</h6>
+                <h6>{{formatDate inscricao }}</h6>
                 <div class="d-flex justify-content-end">
                     <a type="button" class="btn btn-success"  href="/concluir">Concluir</a>
                     <a type="button" class="btn btn-warning"  href="/editar/{{_id}}/{{titulo}}/{{descricao}}">Editar</a>
