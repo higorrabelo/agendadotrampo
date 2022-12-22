@@ -27,12 +27,22 @@ app.get("/",function(req,resp){
     resp.render("index",{layouts:"Home"});
 })
 app.get("/agenda",function(req,resp){
-    Tarefas.find({},function(err,tarefa){
+   /*  Tarefas.find({},function(err,tarefa){
         req.options = {}
         req.options.title = "Agenda"
         req.options.tarefas = tarefa 
         resp.render("agenda",req.options);
-    })
+    }) */
+    Tarefas.find({}).populate({path:'id_usuario',select:'nome'})
+    .exec(function(err,tarefa){
+            if(err){
+                resp.redirect("/")
+            }
+            req.options = {}
+            req.options.title = "Agenda"
+            req.options.tarefas = tarefa 
+            resp.render("agenda",req.options);
+    });
 })
 
 app.get("/remover/:id",function(req,resp){

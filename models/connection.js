@@ -1,13 +1,36 @@
 const mongoose = require('mongoose');
-const usuariosModel = require('./usuarios');
-const tarefasModel = require('./tarefas');
+const Usuarios = require('./usuarios');
+const Tarefas = require('./tarefas');
 
 mongoose.connect("mongodb://localhost:27017/agenda");
 
-/*
-tarefasModel.find().populate("id_usuario").then(function(retorno){
-    console.log(retorno)
-}).catch(err=>console.log(err));
-*/
+function teste(){
+    Tarefas.
+    find().
+    populate({
+        path:'id_usuario',
+        select:'nome'
+    }).exec(function(err,usuario){
+        if(err){
+            console.log("Erro: "+err);
+        }
+        usuario.forEach((parametro)=>{console.log(parametro.id_usuario.nome)})
+    });
+}
 
-console.log(tarefasModel.find().populate("id_usuario"));
+teste()
+
+/*
+Exemplo Populate
+
+Tarefas.
+find().
+populate({
+    path:'id_usuario',
+    select:'nome'
+}).exec(function(err,usuario){
+    if(err){
+        console.log("Erro: "+err);
+    }
+    console.log(usuario);
+}); */
