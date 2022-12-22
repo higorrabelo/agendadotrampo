@@ -4,33 +4,16 @@ const Tarefas = require('./tarefas');
 
 mongoose.connect("mongodb://localhost:27017/agenda");
 
-function teste(){
-    Tarefas.
-    find().
-    populate({
-        path:'id_usuario',
-        select:'nome'
-    }).exec(function(err,usuario){
-        if(err){
-            console.log("Erro: "+err);
-        }
-        usuario.forEach((parametro)=>{console.log(parametro.id_usuario.nome)})
-    });
-}
 
-teste()
 
-/*
-Exemplo Populate
+const filtro = {_id:'63a327e7110e8f33e437cb45'};
+const update = {descricao:"Nova e Atualizada"};
 
-Tarefas.
-find().
-populate({
-    path:'id_usuario',
-    select:'nome'
-}).exec(function(err,usuario){
+Tarefas.findOneAndUpdate(filtro,update).exec(function(err,data){
     if(err){
-        console.log("Erro: "+err);
+        console.log("Erro durante a atualização de Dados");
     }
-    console.log(usuario);
-}); */
+    console.log("Dados Atualizados com sucesso");
+});
+
+/*  */
