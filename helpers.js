@@ -2,7 +2,7 @@ const handlebars = require('express-handlebars');
 const moment = require('moment')
 
 function init(app){
-    app.engine("handlebars", handlebars({
+    app.engine("html", handlebars({
         defaultLayout:'main',
         helpers:{// criação de funções para tagear o html e fazer coisas personalizadas
             formatDate: (date) => {
@@ -13,10 +13,11 @@ function init(app){
             }
             
         },
+        extname:'html',
         layoutsDir: __dirname + '/views/layouts/',
         partialsDir: __dirname + '/views/partials/',        
     }));
-    app.set('view engine','handlebars');
+    app.set('view engine','html');
 }
 
 module.exports = init;

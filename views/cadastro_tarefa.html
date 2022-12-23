@@ -5,7 +5,7 @@
 </div>
     <div class="d-flex justify-content-center mt-4">
         <div class="mybox mt-4">
-                <form action="/cad_tarefa" method="post">
+                <form id="formacao" action="/cad_tarefa" method="post">
                     <input type="hidden" value="{{id}}">
                     <label for="">Título da Tarefa</label>
                     <input type="text" class="form-control" name="titulo" placeholder="Nome da Tarefa" value="{{titulo}}">
@@ -17,7 +17,7 @@
                     </select>
                     <textarea name="descricao" class="form-control mt-3" id="" cols="30" rows="5" placeholder="descrição da tarefa">{{descricao}}</textarea>
                     <div class="d-flex justify-content-end mt-4">
-                        <input type="submit" class="btn btn-primary" value="Cadastrar Tarefa">
+                        <input id="botao" type="submit" class="btn btn-primary" value="Cadastrar Tarefa">
                     </div>
                 </form>
         </div>
