@@ -66,7 +66,8 @@ app.get("/editar/:id",function(req,resp){
         req.options = {}
         req.options.title = "Editar"
         req.options.tarefas = tarefa 
-        resp.render("editar_tarefa",req.options);
+        req.options.edita = true
+        resp.render("cadastro_tarefa",req.options);
     });
 });
 app.get("/cadastro_tarefa",function(req,resp){

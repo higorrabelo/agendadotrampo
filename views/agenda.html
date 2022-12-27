@@ -11,7 +11,7 @@
                 <p><h6 class="text-danger">Criado por: {{ id_usuario.nome }}</h6></p>
                 <h6 class="d-flex justify-content-end">{{formatDate inscricao }}</h6>
                 <div class="d-flex justify-content-end">
-                    <a type="button" class="btn btn-warning mr-1"  onclick="atualizar('/editar/{{_id}}')">Editar</a>
+                    <a type="button" class="btn btn-warning mr-1"  href="/editar/{{_id}}">Editar</a>
                     <a type="button" class="btn btn-danger mr-1 ml-2"  href="/remover/{{_id}}">Remover</a>
                 </div>
             </div>

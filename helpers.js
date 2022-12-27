@@ -10,6 +10,9 @@ function init(app){
             },
             retornaNome: (id_usuario) =>{
                 return id_usuario.nome;
+            },
+            checaStatus:(status)=>{
+               return status==true ? true : false;
             }
             
         },

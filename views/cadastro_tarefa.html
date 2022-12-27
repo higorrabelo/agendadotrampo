@@ -17,7 +17,11 @@
                     </select>
                     <textarea name="descricao" class="form-control mt-3" id="" cols="30" rows="5" placeholder="descrição da tarefa">{{descricao}}</textarea>
                     <div class="d-flex justify-content-end mt-4">
+                        {{#if edita}}
+                        <input id="botao" type="submit" class="btn btn-primary" value="Editar Tarefa">
+                        {{else}}
                         <input id="botao" type="submit" class="btn btn-primary" value="Cadastrar Tarefa">
+                        {{/if}}
                     </div>
                 </form>
         </div>
