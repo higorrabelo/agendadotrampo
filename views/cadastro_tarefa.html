@@ -1,30 +1,35 @@
 <div class="container">
 
 <div class="d-flex justify-content-center">
-     <h1>Cadastro de Tarefa</h1>
-</div>
+     <h1>{{ternario edita 'Edição de Tarefa' 'Cadastro de Tarefa'}}</h1>
+</div> 
     <div class="d-flex justify-content-center mt-4">
         <div class="mybox mt-4">
-                <form id="formacao" action="/cad_tarefa" method="post">
-                    <input type="hidden" value="{{id}}">
+                <form id="formacao" action="/tarefa" method="{{ternario edita 'put' 'post'}}">
+                    {{#tarefa}}
+                    <input id="id" type="hidden" value="{{id}}">
                     <label for="">Título da Tarefa</label>
                     <input type="text" class="form-control" name="titulo" placeholder="Nome da Tarefa" value="{{titulo}}">
                     <label for="">Selecione o Autor</label>
-                    <select class="form-control" name="usuario" id="usuario">               
-                        {{#each usuarios}}
-                            <option value={{ _id }}>{{ nome }}</option>
-                        {{/each}} 
-                    </select>
-                    <textarea name="descricao" class="form-control mt-3" id="" cols="30" rows="5" placeholder="descrição da tarefa">{{descricao}}</textarea>
+                    
+                    
+                    {{#selected id_usuario._id  }}
+                        <select class="form-control" name="usuario" id="usuario" required="required">               
+                            <option value="">Selecione um usuario</option>
+                            {{#each ../../usuarios}}
+                                <option value={{_id}}>{{ nome }}</option>
+                            {{/each}}
+                        </select>
+                    {{/selected}}
+                    <textarea name="descricao" class="form-control mt-3" id="descricao" cols="30" rows="5" placeholder="descrição da tarefa">{{descricao}}{{id_usuario}}</textarea>
                     <div class="d-flex justify-content-end mt-4">
-                        {{#if edita}}
-                        <input id="botao" type="submit" class="btn btn-primary" value="Editar Tarefa">
-                        {{else}}
-                        <input id="botao" type="submit" class="btn btn-primary" value="Cadastrar Tarefa">
-                        {{/if}}
+                        <input id="botao" type="submit" class="btn btn-primary" value="{{ternario ../edita 'Atualizar Tarefa' 'Cadastrar Tarefa'}}">
                     </div>
+                    {{/tarefa}}
                 </form>
         </div>
     </div>
 
 </div>
+
+{{>footer}}

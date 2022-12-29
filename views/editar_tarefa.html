@@ -13,9 +13,12 @@
                     <label for="">Título da Tarefa</label>
                     <input type="text" class="form-control" name="titulo" placeholder="Nome da Tarefa" value="{{titulo}}">
                     <label for="">Selecione o Autor</label>
-                    <select class="form-control" name="usuario" id="usuario">               
-
-                            <option value={{ id_usuario }}>{{ id_usuario.nome }}</option>
+                    <!-- <option value={{ id_usuario }}>{{ id_usuario.nome }}</option> -->
+                    <select class="form-control" name="usuario" id="usuario" required="required">               
+                        <option value="">Selecione um usuario</option>
+                        {{#usuarios}}
+                            <option value={{_id}}>{{ nome }}</option>
+                        {{usuarios}}
                     </select>
                     <textarea name="descricao" class="form-control mt-3" id="" cols="30" rows="5" placeholder="descrição da tarefa">{{descricao}}</textarea>
                     <div class="d-flex justify-content-end mt-4">

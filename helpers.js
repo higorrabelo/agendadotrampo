@@ -13,6 +13,16 @@ function init(app){
             },
             checaStatus:(status)=>{
                return status==true ? true : false;
+            },
+            ternario:(verificacao, verdadeiro, falso)=>{
+               return verificacao? verdadeiro : falso;
+            },
+            selected: (value, options) =>{
+                console.log(value)
+                // console.log(typeof value)
+                // console.log(options.fn(this).replace(new RegExp(`value=\"${value}\"`), '$& selected="selected"'))
+                
+                return options.fn(this).replace(new RegExp(`value=\"${value}\"`), '$& selected="selected"');
             }
             
         },

@@ -56,26 +56,30 @@ app.post("/cadastro_user",function(req,resp){
     usuarios.save()
     resp.redirect("/agenda");  
 });
-app.get("/editar/:id",function(req,resp){
+app.get("/tarefa",function(req,resp){
+    Usuarios.find({},function(err,usuario){
+        resp.render("cadastro_tarefa",{title:"Tarefas",usuarios:usuario, tarefa: {}});
+    })
+});
+app.get("/tarefa/:id",function(req,resp){
     var id = req.params.id;
     Tarefas.findOne({_id:id}).populate({path:'id_usuario',select:'nome'})
     .exec(function(err,tarefa){
         if(err){
             resp.redirect("/")
         }
-        req.options = {}
-        req.options.title = "Editar"
-        req.options.tarefas = tarefa 
-        req.options.edita = true
-        resp.render("cadastro_tarefa",req.options);
+        Usuarios.find({}, function(err, usuarios) {
+            req.options = {}
+            req.options.title = "Editar"
+            req.options.tarefa = tarefa 
+            req.options.usuarios = usuarios 
+            req.options.edita = true
+            resp.render("cadastro_tarefa",req.options);  
+        })
     });
 });
-app.get("/cadastro_tarefa",function(req,resp){
-    Usuarios.find({},function(err,usuario){
-        resp.render("cadastro_tarefa",{title:"Tarefas",usuarios:usuario});
-    })
-});
-app.post("/atualizar",function(req,resp){
+
+app.put("/tarefa",function(req,resp){
     var titulo = req.body.titulo;
     var descricao = req.body.descricao;
     var id = req.body.id;
@@ -89,7 +93,7 @@ app.post("/atualizar",function(req,resp){
     });
     
 });
-app.post("/cad_tarefa",function(req,resp){
+app.post("/tarefa",function(req,resp){
     var titulo = req.body.titulo;
     var descricao = req.body.descricao;
     var id_usuario = req.body.usuario;

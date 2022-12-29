@@ -7,37 +7,8 @@
     <title>{{ layouts }}</title>
     <link rel="stylesheet" href="/css/bootstrap.css">
     <link rel="stylesheet" href="/css/estilo.css">
-    <script>
-           function getXmlHttp(){
-            var xmlhttp;
-            try{
-                xmlhttp = new XMLHttpRequest();
-            }catch(ee){
-                try{
-                    xmlhttp = new ActiveXObject("Msxml2.XMLHTTP");
-                }catch(e){
-                    try{
-                        xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
-                    }catch(E){
-                        xmlhttp = false;
-                    }
-                    }
-                    }
-                }
-                var request = getXmlHttp(url);
-                
-                function atualizar(){
-                        document.getElementById('botao').value="Atualizar"
-                        request.open("GET", url, true);
-                       /*  var se = document.getElementById("senha").value;
-                        var url= "cadastra.php?nome="+nm+"&senha="+se;
-                        request.open("GET", url, true);
-                        request.setRequestHeader("Content-Type",
-                        "application/x-www-form-urlencoded");
-                        request.onreadystatechange = confirma;
-                        request.send(null); */
-                    }
-    </script>
+    <script src="/js/jquery.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-Fy6S3B9q64WdZWQUiU+q4/2Lc9npb8tCaSX9FK7E8HnRr0Jz8D6OP9dO5Vg3Q9ct" crossorigin="anonymous"></script>
 </head>
 <body>
     {{>menu}}
@@ -46,9 +17,5 @@
 
     {{{body}}}
     
-
-<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-Fy6S3B9q64WdZWQUiU+q4/2Lc9npb8tCaSX9FK7E8HnRr0Jz8D6OP9dO5Vg3Q9ct" crossorigin="anonymous"></script>
-<script src="/js/meu.js"></script>
 </body>
 </html>

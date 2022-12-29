@@ -5,13 +5,13 @@
     <div class="row">
         {{#tarefas}}
               <div class="mybox">
-                <h3>{{ titulo }}</h3><hr>
+                <h3 id="titulo">{{ titulo }}</h3><hr>
                 <input type="hidden" name="id" id="id" value={{_id}}>
-                <p>{{ descricao }}</p>
-                <p><h6 class="text-danger">Criado por: {{ id_usuario.nome }}</h6></p>
-                <h6 class="d-flex justify-content-end">{{formatDate inscricao }}</h6>
+                <p id="descricao">{{ descricao }}</p>
+                <p><h6 id="autor" class="text-danger">Criado por: {{ id_usuario.nome }}</h6></p>
+                <h6 class="d-flex justify-content-end" id="cadastro">{{formatDate inscricao }}</h6>
                 <div class="d-flex justify-content-end">
-                    <a type="button" class="btn btn-warning mr-1"  href="/editar/{{_id}}">Editar</a>
+                    <a type="button" class="btn btn-warning mr-1"  href="/tarefa/{{_id}}">Editar</a>
                     <a type="button" class="btn btn-danger mr-1 ml-2"  href="/remover/{{_id}}">Remover</a>
                 </div>
             </div>
