@@ -1,9 +1,8 @@
 
-$("document").ready(function(){
-    console.log($)
-    $.ajax("submit",function(e){
+jQuery("document").ready(function(){
+    jQuery.ajax("submit",function(e){
         e.preventDefault()
-        console.log("Parei o submit")
+        alert("Parei o submit")
     })
 
 });
